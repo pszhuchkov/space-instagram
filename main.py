@@ -11,7 +11,7 @@ from instabot import Bot
 SPACEX_API_LATEST_LAUNCH = 'https://api.spacexdata.com/v4/launches/latest'
 HUBBLE_API_GET_IMAGE = 'http://hubblesite.org/api/v3/image/{}'
 HUBBLE_API_GET_IMAGES = 'http://hubblesite.org/api/v3/images'
-HUBBLE_COLLECTION = 'holiday_cards'
+HUBBLE_COLLECTION = 'spacecraft'
 IMAGES_FOLDER = 'images'
 
 
@@ -58,10 +58,9 @@ def save_thumbnail_jpg(image_bytes, filename):
     mode = 'RGB'
     try:
         image = Image.open(io.BytesIO(image_bytes))
-        if image.mode != 'RGB':
-            image = image.convert(mode)
-        image.thumbnail(size)
-        image.save(
+        rgb_image = image.convert(mode)
+        rgb_image.thumbnail(size)
+        rgb_image.save(
             os.path.join(IMAGES_FOLDER, '.'.join((filename, extension)))
         )
     except Exception as e:
@@ -81,7 +80,9 @@ def upload_images(images_folder):
         filepath = os.path.join(images_folder, jpg_image)
         if os.path.isfile(filepath):
             filename = os.path.splitext(jpg_image)[0]
-            bot.upload_photo(os.path.join(images_folder, jpg_image), filename)
+            bot.upload_photo(filepath, filename)
+            if bot.api.last_response.status_code != 200:
+                print(bot.api.last_response)
 
 
 if __name__ == '__main__':

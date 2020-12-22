@@ -23,7 +23,7 @@ def save_thumbnail_jpg(image_bytes, filename):
         rgb_image = image.convert(mode)
         rgb_image.thumbnail(size)
         rgb_image.save(
-            os.path.join(IMAGES_FOLDER, '.'.join((filename, extension)))
+            os.path.join(IMAGES_FOLDER, f'{filename}.{extension}')
         )
     except Exception as e:
         print(e)

@@ -1,9 +1,7 @@
 import os
 from dotenv import load_dotenv
 from instabot import Bot
-
-
-IMAGES_FOLDER = 'images'
+from helpers import IMAGES_FOLDER
 
 
 def upload_images(images_folder):

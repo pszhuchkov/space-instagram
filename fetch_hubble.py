@@ -1,22 +1,12 @@
 import requests
-import os
-import io
 from pathlib import Path
 from urllib.parse import urlparse
-from PIL import Image
+from helpers import download_img, IMAGES_FOLDER
 
 
 HUBBLE_API_GET_IMAGE = 'http://hubblesite.org/api/v3/image/{}'
 HUBBLE_API_GET_IMAGES = 'http://hubblesite.org/api/v3/images'
 HUBBLE_COLLECTION = 'spacecraft'
-IMAGES_FOLDER = 'images'
-
-
-def download_img(url, filename):
-    """Download an image and save a thumbnail"""
-    response = requests.get(url, verify=False)
-    response.raise_for_status()
-    save_thumbnail_jpg(response.content, filename)
 
 
 def fetch_hubble_image(image_id):
@@ -38,21 +28,6 @@ def fetch_hubble_collection(collection_name):
     for image in collection_images:
         image_id = image['id']
         fetch_hubble_image(image_id)
-
-
-def save_thumbnail_jpg(image_bytes, filename):
-    extension = 'jpg'
-    size = 1080, 1080
-    mode = 'RGB'
-    try:
-        image = Image.open(io.BytesIO(image_bytes))
-        rgb_image = image.convert(mode)
-        rgb_image.thumbnail(size)
-        rgb_image.save(
-            os.path.join(IMAGES_FOLDER, '.'.join((filename, extension)))
-        )
-    except Exception as e:
-        print(e)
 
 
 if __name__ == '__main__':

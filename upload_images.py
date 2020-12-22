@@ -28,7 +28,7 @@ def upload_images(images_folder):
                 except FileNotFoundError:
                     os.remove(os.path.join(images_folder, jpg_image))
     else:
-        print('The directory does not exists')
+        print('The directory does not exist')
 
 
 if __name__ == '__main__':

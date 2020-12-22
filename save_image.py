@@ -1,7 +1,7 @@
 import os
 import requests
 import io
-from PIL import Image
+from PIL import Image, UnidentifiedImageError
 
 
 IMAGES_FOLDER = 'images'
@@ -25,5 +25,5 @@ def save_thumbnail_jpg(image_bytes, filename):
         rgb_image.save(
             os.path.join(IMAGES_FOLDER, f'{filename}.{extension}')
         )
-    except Exception as e:
-        print(e)
+    except UnidentifiedImageError as e:
+        print(f'{e}. Filename {filename}')

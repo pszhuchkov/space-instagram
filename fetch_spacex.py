@@ -18,5 +18,7 @@ def fetch_spacex_last_launch(images_folder):
 
 
 if __name__ == '__main__':
-    Path(IMAGES_FOLDER).mkdir(exist_ok=True)
-    fetch_spacex_last_launch()
+    load_dotenv()
+    args = get_parsed_arguments()
+    Path(args.images_folder).mkdir(exist_ok=True)
+    fetch_spacex_last_launch(args.images_folder)

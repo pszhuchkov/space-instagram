@@ -16,8 +16,7 @@ def fetch_hubble_image(image_id):
     best_image = image_files[-1]
     scheme = urlparse(HUBBLE_API_GET_IMAGE).scheme
     best_image_url = f"{scheme}:{best_image['file_url']}"
-    filename = f"{image_id}"
-    download_img(best_image_url, filename)
+    download_img(best_image_url, images_folder, image_id)
 
 
 def fetch_hubble_collection(collection_name):
@@ -27,9 +26,13 @@ def fetch_hubble_collection(collection_name):
     collection_images = response.json()
     for image in collection_images:
         image_id = image['id']
-        fetch_hubble_image(image_id)
+        fetch_hubble_image(images_folder, image_id)
 
 
 if __name__ == '__main__':
-    Path(IMAGES_FOLDER).mkdir(exist_ok=True)
-    fetch_hubble_collection(HUBBLE_COLLECTION)
+    load_dotenv()
+    args = get_parsed_arguments()
+    Path(args.images_folder).mkdir(exist_ok=True)
+    fetch_hubble_collection(
+        args.hubble_collection, args.images_folder
+    )

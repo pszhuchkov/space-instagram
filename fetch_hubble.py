@@ -26,7 +26,7 @@ def fetch_hubble_collection(collection_name, images_folder):
     response.raise_for_status()
     collection_images = response.json()
     for image in collection_images:
-        image_id = image['id']
+        image_id = str(image['id'])
         fetch_hubble_image(images_folder, image_id)
 
 

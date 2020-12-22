@@ -10,8 +10,8 @@ def upload_images(images_folder):
     jpg_images = filter(lambda x: x.endswith('.jpg'), folder_files)
     bot = Bot()
     bot.login(
-        username=os.getenv('IG_LOGIN'),
-        password=os.getenv('IG_PASS')
+        username=os.getenv('INSTAGRAM_LOGIN'),
+        password=os.getenv('INSTAGRAM_PASSWORD')
     )
     for jpg_image in jpg_images:
         filepath = os.path.join(images_folder, jpg_image)

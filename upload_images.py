@@ -18,8 +18,6 @@ def upload_images(images_folder):
         if os.path.isfile(filepath):
             filename = os.path.splitext(jpg_image)[0]
             bot.upload_photo(filepath, filename)
-            if bot.api.last_response.status_code != 200:
-                print(bot.api.last_response)
 
 
 if __name__ == '__main__':

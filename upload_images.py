@@ -1,7 +1,7 @@
 import os
 from dotenv import load_dotenv
 from instabot import Bot
-from save_image import IMAGES_FOLDER
+from helpers import get_parsed_arguments
 
 
 def upload_images(images_folder):
@@ -21,4 +21,6 @@ def upload_images(images_folder):
 
 
 if __name__ == '__main__':
-    upload_images(IMAGES_FOLDER)
+    load_dotenv()
+    args = get_parsed_arguments()
+    upload_images(args.images_folder)

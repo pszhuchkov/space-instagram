@@ -1,6 +1,6 @@
 import requests
 from pathlib import Path
-from helpers import download_img, IMAGES_FOLDER
+from save_image import download_img, IMAGES_FOLDER
 
 
 SPACEX_API_LATEST_LAUNCH = 'https://api.spacexdata.com/v4/launches/latest'

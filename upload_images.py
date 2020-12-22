@@ -1,7 +1,7 @@
 import os
 from dotenv import load_dotenv
 from instabot import Bot
-from helpers import IMAGES_FOLDER
+from save_image import IMAGES_FOLDER
 
 
 def upload_images(images_folder):

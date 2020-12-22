@@ -1,7 +1,7 @@
 import requests
 from pathlib import Path
 from urllib.parse import urlparse
-from helpers import download_img, IMAGES_FOLDER
+from save_image import download_img, IMAGES_FOLDER
 
 
 HUBBLE_API_GET_IMAGE = 'http://hubblesite.org/api/v3/image/{}'

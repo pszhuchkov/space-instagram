@@ -1,4 +1,5 @@
 import requests
+import urllib3
 from pathlib import Path
 from save_image import download_img
 from helpers import get_parsed_arguments
@@ -21,4 +22,5 @@ if __name__ == '__main__':
     load_dotenv()
     args = get_parsed_arguments()
     Path(args.images_folder).mkdir(exist_ok=True)
+    urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
     fetch_spacex_last_launch(args.images_folder)

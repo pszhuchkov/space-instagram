@@ -1,4 +1,5 @@
 import requests
+import urllib3
 from pathlib import Path
 from urllib.parse import urlparse
 from save_image import download_img
@@ -34,6 +35,7 @@ if __name__ == '__main__':
     load_dotenv()
     args = get_parsed_arguments()
     Path(args.images_folder).mkdir(exist_ok=True)
+    urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
     fetch_hubble_collection(
         args.hubble_collection, args.images_folder
     )
